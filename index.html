@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liche Tsegaye | Software Engineer & AI Developer</title>
+  <meta name="description" content="Portfolio of Liche Tsegaye (Li) - Software Engineer & AI Developer specializing in Agentic RAG, Gemini AI, FastAPI, and Full-Stack Engineering.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="src/index.css">
+
+  <!-- React 18, ReactDOM 18 & Babel for standalone browser execution -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- React Application Entrypoint -->
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    // --- Centralized Portfolio Data ---
+    const personalInfo = {
+      name: "Liche Tsegaye",
+      nickname: "Li",
+      role: "Software Engineer & AI Developer",
+      headline: "Engineering Autonomous AI Agents & Scalable Systems",
+      location: "Jimma / Woliso, Ethiopia",
+      email: "lichetsega@gmail.com",
+      telegram: "https://t.me/Lichetsega",
+      telegramHandle: "@Lichetsega",
+      github: "https://github.com/Lichetsega",
+      githubHandle: "@Lichetsega",
+      linkedin: "https://www.linkedin.com/in/liche-tsegaye-05a25b361",
+      linkedinHandle: "liche-tsegaye",
+      resumePath: "assets/Liche_Tsegaye_Resume.pdf",
+      avatarPath: "assets/avatar.jpg",
+      availability: "Available for AI & Full-Stack Roles"
+    };
+
+    const stats = [
+      { value: "29+", label: "GitHub Repositories" },
+      { value: "6 Mo.", label: "AI Engineering at INSA" },
+      { value: "5th Yr", label: "Jimma University B.Sc." }
+    ];
+
+    const skillsData = [
+      {
+        category: "AI & Agentic RAG",
+        icon: "cpu",
+        description: "LLMs, autonomous agent orchestration & vector retrieval",
+        skills: [
+          "Agentic RAG",
+          "Google Gemini API",
+          "LangChain",
+          "LlamaIndex",
+          "ChromaDB",
+          "FAISS",
+          "Hybrid Search (BM25)",
+          "PyTorch",
+          "Phonetic Fuzzy Matching"
+        ]
+      },
+      {
+        category: "Backend & Systems",
+        icon: "server",
+        description: "High-throughput APIs, databases & concurrency",
+        skills: [
+          "Python",
+          "FastAPI",
+          "Flask",
+          "Node.js",
+          "Express.js",
+          "PostgreSQL",
+          "MySQL",
+          "Redis",
+          "WebSockets",
+          "RESTful APIs"
+        ]
+      },
+      {
+        category: "Frontend & UI/UX",
+        icon: "layout",
+        description: "Clean, responsive & interactive web interfaces",
+        skills: [
+          "React",
+          "JavaScript (ES6+)",
+          "TypeScript",
+          "Tailwind CSS",
+          "CSS3 Architecture",
+          "Responsive UI",
+          "State Management",
+          "Modern Web APIs"
+        ]
+      },
+      {
+        category: "DevOps, Data & Security",
+        icon: "shield",
+        description: "Privacy models, containers & developer tooling",
+        skills: [
+          "Git & GitHub",
+          "Docker",
+          "Linux CLI",
+          "k-Anonymity (SHA-1)",
+          "Postman",
+          "GitHub Actions",
+          "BeautifulSoup",
+          "Data Normalization"
+        ]
+      }
+    ];
+
+    const experienceData = [
+      {
+        role: "AI Engineering Intern",
+        company: "Information Network Security Administration (INSA)",
+        period: "6 Months",
+        location: "Addis Ababa, Ethiopia",
+        description: "Engineered and scaled Retrieval-Augmented Generation (RAG) and Agentic RAG pipelines within the AI Department.",
+        highlights: [
+          "Designed autonomous multi-agent routing systems incorporating intent detection, document evaluation, and contextual conversation memory.",
+          "Implemented hybrid retrieval combining dense vector embeddings (ChromaDB, FAISS) with sparse keyword search (BM25) and phonetic fuzzy matching.",
+          "Collaborated on security-first AI pipelines, API rate-limit resilience, and round-robin multi-key failover managers.",
+          "Optimized query response latency through multi-tiered semantic query caching."
+        ],
+        tags: ["Agentic RAG", "ChromaDB", "FAISS", "BM25", "FastAPI", "Python", "Multi-Agent Systems"]
+      },
+      {
+        role: "B.Sc. in Software Engineering",
+        company: "Jimma University — Faculty of Computing",
+        period: "2015 E.C. – Present",
+        location: "Jimma, Ethiopia",
+        description: "Undergraduate degree focusing on software architectures, distributed computing, algorithms, and applied machine learning.",
+        highlights: [
+          "Rigorous coursework in Data Structures & Algorithms, Distributed Systems, Database Management Systems (PostgreSQL, MySQL), and Machine Learning.",
+          "Active participant in campus developer societies, technical workshops, and engineering hackathons.",
+          "Graduating in 5th year top tier with specialization in artificial intelligence and systems engineering."
+        ],
+        tags: ["Distributed Systems", "Algorithms", "PostgreSQL", "Machine Learning", "System Design"]
+      },
+      {
+        role: "Web Development Intern",
+        company: "Prodigy InfoTech",
+        period: "Internship",
+        location: "Remote",
+        description: "Engineered responsive client landing pages, interactive games, and modern web applications.",
+        highlights: [
+          "Developed interactive browser-based applications with semantic HTML5, modern CSS3 animations, and vanilla JavaScript DOM manipulation.",
+          "Implemented state machines for user interaction and game loops.",
+          "Ensured cross-browser compatibility and optimized mobile responsiveness."
+        ],
+        tags: ["JavaScript (ES6+)", "Responsive Design", "DOM Manipulation", "CSS3", "Web APIs"]
+      }
+    ];
+
+    const projectsData = [
+      {
+        id: "visit-ethiopia",
+        title: "Visit Ethiopia Agentic RAG",
+        tagline: "Autonomous Multi-Agent Tourism Intelligence",
+        category: "ai",
+        categoryLabel: "AI & Multi-Agent",
+        featured: true,
+        description: "Autonomous multi-agent tourism intelligence system featuring a Fused Supervisor Planner handling intent classification, pronoun resolution, and search query expansion.",
+        highlights: [
+          "Fused Supervisor Planner routing queries to specialized sub-agents (Itinerary Planning, UNESCO Heritage, Visa Logistics).",
+          "Two-tier semantic query caching (≥ 0.82 similarity threshold) returning zero-API-call responses on cache hits.",
+          "Hybrid retrieval combining dense vector embeddings with sparse BM25 and phonetic fuzzy matching."
+        ],
+        stack: ["Agentic RAG", "Python", "ChromaDB", "BM25 Fuzzy", "LangChain", "Streamlit", "Flask"],
+        githubUrl: "https://github.com/Lichetsega/Agentic-Retrieval-Augmented-Generation-Agentic-RAG-"
+      },
+      {
+        id: "voice-assistant",
+        title: "Li's AI Virtual Voice Assistant",
+        tagline: "Full-Duplex Interactive Voice Portfolio",
+        category: "ai",
+        categoryLabel: "Voice AI & LLMs",
+        featured: true,
+        description: "Full-duplex interactive voice portfolio assistant powered by Google Gemini AI and FastAPI WebSockets with client-side speech recognition and synthesis.",
+        highlights: [
+          "Real-time voice streaming with sub-second turnaround and round-robin multi-key API failover.",
+          "Custom security guardrails preventing prompt injection and sanitizing outgoing code leaks or system paths.",
+          "Offline keyword RAG fallback engine providing uninterrupted answers during quota limits."
+        ],
+        stack: ["FastAPI", "WebSockets", "Google Gemini AI", "Guardrails", "Python", "Local RAG"],
+        githubUrl: "https://github.com/Lichetsega/Li-s-Personal-Assistant"
+      },
+      {
+        id: "rag-chatbot",
+        title: "RAG Document Chatbot",
+        tagline: "Context-Aware Semantic Retrieval Engine",
+        category: "ai",
+        categoryLabel: "Semantic Search",
+        featured: false,
+        description: "Context-aware conversational assistant architecture with semantic retrieval capabilities to parse internal documents and provide precise, hallucination-resistant responses with citations.",
+        highlights: [
+          "Optimized document chunking with metadata tagging and vector embeddings.",
+          "Precise source citation and context window management to eliminate hallucinations.",
+          "High-recall retrieval pipeline evaluated against custom test benchmarks."
+        ],
+        stack: ["Python", "RAG", "ChromaDB", "Document Chunking", "Semantic Search"],
+        githubUrl: "https://github.com/Lichetsega/Retrieval-Augmented-generation-RAG-chatbot-"
+      },
+      {
+        id: "world-quiz",
+        title: "World Geography Quiz Engine",
+        tagline: "Full-Stack Relational Database Web App",
+        category: "fullstack",
+        categoryLabel: "Full-Stack & DB",
+        featured: false,
+        description: "Interactive geographic quiz web platform backed by a relational PostgreSQL database and Node.js with automated scoring and session persistence.",
+        highlights: [
+          "Normalized relational schema in PostgreSQL storing country data, capitals, and session history.",
+          "Randomized question generators preventing question repeat patterns.",
+          "Clean REST API handling score verification and leaderboard tabulations."
+        ],
+        stack: ["PostgreSQL", "Node.js", "Express", "JavaScript (ES6+)", "CSS3"],
+        githubUrl: "https://github.com/Lichetsega/world-quiz"
+      },
+      {
+        id: "infant-vaccination",
+        title: "Infant Immunization Tracking Portal",
+        tagline: "Clinical Healthcare Management System",
+        category: "fullstack",
+        categoryLabel: "Healthcare System",
+        featured: false,
+        description: "A comprehensive clinical management system built to schedule, track, and record infant immunization histories with relational data integrity.",
+        highlights: [
+          "Role-based access control for healthcare workers, administrators, and parents.",
+          "Automated milestone reminders for scheduled pediatric vaccination schedules.",
+          "Relational integrity and audit logs for clinical record modifications."
+        ],
+        stack: ["PHP", "MySQL", "JavaScript", "HTML5", "CSS3"],
+        githubUrl: "https://github.com/Lichetsega/infant-vaccination"
+      },
+      {
+        id: "password-checker",
+        title: "Password Exposure Auditor",
+        tagline: "Zero-Knowledge Credential Security Tool",
+        category: "tools",
+        categoryLabel: "Security & Privacy",
+        featured: false,
+        description: "Zero-knowledge credential security tool querying the Have I Been Pwned API using SHA-1 cryptographic hashing and the mathematical k-Anonymity privacy model.",
+        highlights: [
+          "Zero credential leakage guaranteed by sending solely the 5-character hash prefix over TLS.",
+          "Client-side hashing preventing plaintext password transmission.",
+          "Fast response evaluation matching the remaining 35 hash characters locally."
+        ],
+        stack: ["Python", "SHA-1 Hashing", "k-Anonymity", "HIBP API", "Cryptography"],
+        githubUrl: "https://github.com/Lichetsega/password_checker"
+      },
+      {
+        id: "hacker-news-scraper",
+        title: "Hacker News Signal Filter",
+        tagline: "High-Yield Engineering News Crawler",
+        category: "tools",
+        categoryLabel: "Automation & Scraping",
+        featured: false,
+        description: "Targeted multi-page web crawler engineered to eliminate technical news noise by extracting, aggregating, and ranking high-signal discussions with score thresholds.",
+        highlights: [
+          "Multi-page pagination crawling with polite rate limiting and custom request headers.",
+          "Weighted scoring filter retaining discussions above 99 points.",
+          "Generates clean structured digest outputs for rapid engineering review."
+        ],
+        stack: ["Python", "BeautifulSoup", "HTTP Requests", "Data Filtering", "Automation"],
+        githubUrl: "https://github.com/Lichetsega/hacker_news-scraper"
+      }
+    ];
+
+    const aiKnowledgeBase = {
+      insa: "During her 6-month AI Engineering internship at INSA (Information Network Security Administration), Liche engineered and scaled production RAG and Agentic RAG pipelines. She architected autonomous multi-agent routing systems incorporating intent detection, contextual memory, and hybrid retrieval (combining dense vector embeddings with sparse BM25 and phonetic fuzzy search).",
+      rag: "Liche's AI expertise centers on Agentic RAG architectures. Rather than basic single-shot prompts, her systems use Fused Supervisor Planners, specialized sub-agents (e.g. Itinerary, UNESCO Heritage, Logistics), semantic caching (≥ 0.82 similarity threshold for zero API latency), and hybrid dense/sparse retrieval with ChromaDB, FAISS, and BM25.",
+      assistant: "Her 'Li's AI Virtual Voice Assistant' is a full-duplex interactive voice platform built with FastAPI, WebSockets, client-side STT/TTS, Google Gemini AI, prompt injection guardrails, and an offline keyword RAG fallback engine for zero downtime.",
+      backend: "Liche's backend toolkit includes Python (FastAPI, Flask, Uvicorn, Pydantic), Node.js (Express), PostgreSQL, and MySQL. She emphasizes clean RESTful API contracts, relational database normalization, WebSocket concurrency, and high-performance server logic.",
+      education: "Liche is in her 5th year graduating class pursuing a B.Sc. in Software Engineering at Jimma University (Faculty of Computing). Her studies cover Distributed Systems, Data Structures & Algorithms, Database Systems, and Machine Learning.",
+      availability: "Liche is actively seeking full-time Software Engineer, AI Developer, and Full-Stack Engineering roles, as well as contract collaborations. You can reach her directly at lichetsega@gmail.com, message on Telegram @Lichetsega, or connect on LinkedIn (liche-tsegaye-05a25b361).",
+      projects: "Her top projects include the Visit Ethiopia Agentic RAG system (multi-agent tourism intelligence), Li's AI Virtual Voice Assistant (FastAPI + Gemini WebSockets), Password Exposure Auditor (zero-knowledge k-Anonymity security), and World Geography Quiz Engine (PostgreSQL + Node.js).",
+      default: "Liche Tsegaye is a Software Engineer & AI Developer based in Ethiopia, completing her B.Sc. at Jimma University with 6 months of AI engineering at INSA. Her core focus is Agentic RAG, autonomous multi-agent workflows, and full-stack backend architectures. How can I help you learn more about her work?"
+    };
+
+    const samplePrompts = [
+      { label: "Agentic RAG & INSA Experience", query: "Explain your Agentic RAG and INSA AI experience." },
+      { label: "Backend & Systems Tech Stack", query: "What is your backend and database architecture stack?" },
+      { label: "Visit Ethiopia Multi-Agent System", query: "Tell me about the Visit Ethiopia Agentic RAG system." },
+      { label: "Availability & Contact Details", query: "Are you open to full-time roles and how can I contact you?" }
+    ];
+
+    // --- Components ---
+
+    function Navbar({ theme, toggleTheme }) {
+      const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+      const navLinks = [
+        { label: "About", href: "#about" },
+        { label: "Experience", href: "#experience" },
+        { label: "Skills", href: "#skills" },
+        { label: "Projects", href: "#projects" },
+        { label: "AI Simulator", href: "#assistant" },
+        { label: "Contact", href: "#contact" }
+      ];
+
+      return (
+        <header className="navbar">
+          <div className="container navbar-container">
+            <a href="#hero" className="brand-monogram">
+              <span className="monogram-badge">LT</span>
+              <span>Liche<span className="brand-dot">.dev</span></span>
+            </a>
+
+            <nav className="nav-links-desktop">
+              {navLinks.map((link) => (
+                <a key={link.label} href={link.href} className="nav-link">
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+
+            <div className="nav-actions">
+              <button
+                onClick={toggleTheme}
+                className="theme-toggle-btn"
+                aria-label="Toggle Theme"
+                title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`}
+              >
+                {theme === 'dark' ? (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                  </svg>
+                ) : (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                  </svg>
+                )}
+              </button>
+
+              <a
+                href={personalInfo.resumePath}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-secondary btn-sm"
+                download
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Resume</span>
+              </a>
+
+              <a href="#contact" className="btn btn-primary btn-sm">
+                <span>Connect</span>
+              </a>
+
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="hamburger-btn"
+                aria-label="Toggle mobile menu"
+              >
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+            </div>
+          </div>
+
+          <div className={`mobile-nav-drawer ${mobileMenuOpen ? 'open' : ''}`}>
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="mobile-nav-link"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </header>
+      );
+    }
+
+    function Hero() {
+      return (
+        <section className="hero-section" id="hero">
+          <div className="container">
+            <div className="hero-grid">
+              <div>
+                <div className="live-badge">
+                  <span className="pulse-indicator"></span>
+                  <span>{personalInfo.availability}</span>
+                </div>
+
+                <h1 className="hero-title">
+                  Hi, I'm <span className="gradient-text">{personalInfo.name}</span>
+                </h1>
+
+                <div className="hero-subtitle">
+                  <span>{personalInfo.role}</span>
+                </div>
+
+                <p className="hero-bio">
+                  Specializing in <strong>Agentic RAG systems</strong>, autonomous LLM orchestration, and high-concurrency backend architectures. Graduating Software Engineer from <strong>Jimma University</strong> with hands-on AI engineering experience at <strong>INSA</strong>.
+                </p>
+
+                <div className="hero-actions">
+                  <a href="#projects" className="btn btn-primary">
+                    <span>Explore Work</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </a>
+
+                  <a
+                    href={personalInfo.resumePath}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-secondary"
+                    download
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                      <polyline points="7 10 12 15 17 10"></polyline>
+                      <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    <span>Resume (PDF)</span>
+                  </a>
+
+                  <a
+                    href={personalInfo.telegram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-icon-btn"
+                    aria-label="Telegram"
+                    title="Telegram @Lichetsega"
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.87 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.46c.537-.196 1.006.128.831.94z"/>
+                    </svg>
+                  </a>
+
+                  <a
+                    href={personalInfo.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-icon-btn"
+                    aria-label="GitHub"
+                    title="GitHub @Lichetsega"
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                    </svg>
+                  </a>
+
+                  <a
+                    href={personalInfo.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-icon-btn"
+                    aria-label="LinkedIn"
+                    title="LinkedIn Profile"
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                  </a>
+                </div>
+
+                <div className="hero-stats-row">
+                  {stats.map((item) => (
+                    <div key={item.label} className="stat-box">
+                      <span className="stat-val">{item.value}</span>
+                      <span className="stat-desc">{item.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <div className="hero-avatar-card">
+                  {/* Luminous Ambient Tech Halo */}
+                  <div className="avatar-card-halo" aria-hidden="true"></div>
+
+                  <div className="avatar-wrapper">
+                    <img
+                      src={personalInfo.avatarPath}
+                      alt={personalInfo.name}
+                      className="avatar-img"
+                    />
+                    <div className="avatar-scrim" aria-hidden="true"></div>
+
+                    <div className="avatar-overlay-badge">
+                      <div>
+                        <div className="overlay-info-name">{personalInfo.name}</div>
+                        <div className="overlay-info-sub">AI & Full-Stack • Ethiopia</div>
+                      </div>
+                      <div className="live-badge" style={{ margin: 0, padding: '0.25rem 0.6rem' }}>
+                        <span className="pulse-indicator"></span>
+                        <span>Online</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Clean Floating Tech Micro-Chips */}
+                  <div className="floating-tech-chip chip-rag">
+                    <span className="chip-icon-dot dot-indigo"></span>
+                    <span>Agentic RAG</span>
+                  </div>
+                  <div className="floating-tech-chip chip-insa">
+                    <span className="chip-icon-dot dot-emerald"></span>
+                    <span>INSA AI Intern</span>
+                  </div>
+                  <div className="floating-tech-chip chip-voice">
+                    <span className="chip-icon-dot dot-cyan"></span>
+                    <span>Gemini Voice & Sockets</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function About() {
+      return (
+        <section className="section" id="about">
+          <div className="container">
+            <div className="section-header">
+              <div className="section-tag">
+                <span>Engineering Story</span>
+              </div>
+              <h2 className="section-title">Where Intelligence Meets Systems Architecture</h2>
+              <p className="section-subtitle">
+                Bridging autonomous AI workflows with robust, scalable backends and intuitive user interfaces.
+              </p>
+            </div>
+
+            <div className="about-grid">
+              <div className="card-glass about-card">
+                <h3>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent-primary)" strokeWidth="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                  <span>Who I Am</span>
+                </h3>
+                <p>
+                  I am a Software Engineer and AI Developer based in Ethiopia, completing my B.Sc. in Software Engineering at <strong>Jimma University</strong>. I engineer specialized agentic workflows, multi-agent orchestrations, and high-concurrency backend services that solve concrete, high-impact problems.
+                </p>
+                <p>
+                  During my 6-month AI Engineering internship at <strong>INSA (Information Network Security Administration)</strong>, I engineered and scaled production-grade RAG and Agentic RAG pipelines—mastering intent detection, hybrid vector retrieval, and multi-key failover managers.
+                </p>
+                <p>
+                  Whether designing full-duplex interactive voice systems with <strong>FastAPI & WebSockets</strong> or structuring normalized database models in <strong>PostgreSQL</strong>, I take extreme ownership over code quality, security, and developer ergonomics.
+                </p>
+              </div>
+
+              <div className="card-glass about-card">
+                <h3>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" strokeWidth="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 14 14"></polyline>
+                  </svg>
+                  <span>Core Principles</span>
+                </h3>
+
+                <ul className="pillar-list">
+                  <li className="pillar-item">
+                    <div className="pillar-icon-box">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <rect x="4" y="4" width="16" height="16" rx="2" />
+                        <rect x="9" y="9" width="6" height="6" />
+                      </svg>
+                    </div>
+                    <div className="pillar-text">
+                      <strong>Autonomous Intelligence</strong>
+                      <span>Moving beyond static prompts into agentic loops featuring intent detection, dynamic tool execution, and semantic query caching.</span>
+                    </div>
+                  </li>
+
+                  <li className="pillar-item">
+                    <div className="pillar-icon-box">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M4 17l6-6-6-6M12 19h8" />
+                      </svg>
+                    </div>
+                    <div className="pillar-text">
+                      <strong>Architectural Rigor</strong>
+                      <span>Building robust, type-safe backends, relational schema integrity, and security-first implementations (such as SHA-1 k-Anonymity models).</span>
+                    </div>
+                  </li>
+
+                  <li className="pillar-item">
+                    <div className="pillar-icon-box">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <polyline points="16 18 22 12 16 6" />
+                        <polyline points="8 6 2 12 8 18" />
+                      </svg>
+                    </div>
+                    <div className="pillar-text">
+                      <strong>Clean Engineering & UI</strong>
+                      <span>Writing clean, maintainable code with modular components, high performance, and accessible, clutter-free interfaces.</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function Experience() {
+      return (
+        <section className="section" id="experience">
+          <div className="container">
+            <div className="section-header">
+              <div className="section-tag">
+                <span>Career & Education</span>
+              </div>
+              <h2 className="section-title">Experience & Academic Background</h2>
+              <p className="section-subtitle">
+                Hands-on AI pipeline research, full-stack systems development, and rigorous software engineering education.
+              </p>
+            </div>
+
+            <div className="experience-timeline">
+              {experienceData.map((exp, index) => (
+                <div key={index} className="card-glass exp-card">
+                  <div className="exp-header">
+                    <div>
+                      <h3 className="exp-role">{exp.role}</h3>
+                      <div className="exp-company">{exp.company}</div>
+                    </div>
+
+                    <div className="exp-meta-badge">
+                      <span>{exp.period}</span>
+                      <span>•</span>
+                      <span>{exp.location}</span>
+                    </div>
+                  </div>
+
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.96rem', marginBottom: '0.75rem' }}>
+                    {exp.description}
+                  </p>
+
+                  <ul className="exp-highlights">
+                    {exp.highlights.map((item, idx) => (
+                      <li key={idx}>{item}</li>
+                    ))}
+                  </ul>
+
+                  <div className="exp-tags">
+                    {exp.tags.map((tag) => (
+                      <span key={tag} className="exp-tag-pill">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function Skills() {
+      const getCategoryIcon = (iconName) => {
+        switch (iconName) {
+          case 'cpu':
+            return (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                <rect x="9" y="9" width="6" height="6"></rect>
+                <line x1="9" y1="1" x2="9" y2="4"></line>
+                <line x1="15" y1="1" x2="15" y2="4"></line>
+                <line x1="9" y1="20" x2="9" y2="23"></line>
+                <line x1="15" y1="20" x2="15" y2="23"></line>
+                <line x1="20" y1="9" x2="23" y2="9"></line>
+                <line x1="20" y1="14" x2="23" y2="14"></line>
+                <line x1="1" y1="9" x2="4" y2="9"></line>
+                <line x1="1" y1="14" x2="4" y2="14"></line>
+              </svg>
+            );
+          case 'server':
+            return (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+              </svg>
+            );
+          case 'layout':
+            return (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="3" y1="9" x2="21" y2="9"></line>
+                <line x1="9" y1="21" x2="9" y2="9"></line>
+              </svg>
+            );
+          case 'shield':
+          default:
+            return (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            );
+        }
+      };
+
+      return (
+        <section className="section" id="skills">
+          <div className="container">
+            <div className="section-header">
+              <div className="section-tag">
+                <span>Tech Stack</span>
+              </div>
+              <h2 className="section-title">Technical Skills Matrix</h2>
+              <p className="section-subtitle">
+                Tools, frameworks, and patterns honed across production AI pipelines, backends, and full-stack applications.
+              </p>
+            </div>
+
+            <div className="skills-grid">
+              {skillsData.map((category) => (
+                <div key={category.category} className="card-glass skill-category-box">
+                  <div className="skill-cat-header">
+                    <div className="skill-cat-icon">
+                      {getCategoryIcon(category.icon)}
+                    </div>
+                    <div>
+                      <h3 className="skill-cat-title">{category.category}</h3>
+                      <div className="skill-cat-desc">{category.description}</div>
+                    </div>
+                  </div>
+
+                  <div className="skill-pills-wrap">
+                    {category.skills.map((skill) => (
+                      <span key={skill} className="skill-chip">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function Projects() {
+      const [activeFilter, setActiveFilter] = useState('all');
+      const [searchQuery, setSearchQuery] = useState('');
+
+      const filterOptions = [
+        { key: 'all', label: `All (${projectsData.length})` },
+        { key: 'ai', label: 'AI & Agents (3)' },
+        { key: 'fullstack', label: 'Full-Stack & DB (2)' },
+        { key: 'tools', label: 'Security & Tools (2)' }
+      ];
+
+      const filteredProjects = projectsData.filter((project) => {
+        const matchesFilter = activeFilter === 'all' || project.category === activeFilter;
+        const q = searchQuery.toLowerCase().trim();
+        const matchesSearch =
+          !q ||
+          project.title.toLowerCase().includes(q) ||
+          project.description.toLowerCase().includes(q) ||
+          project.stack.some((tech) => tech.toLowerCase().includes(q));
+        return matchesFilter && matchesSearch;
+      });
+
+      return (
+        <section className="section" id="projects">
+          <div className="container">
+            <div className="section-header">
+              <div className="section-tag">
+                <span>Portfolio & Work</span>
+              </div>
+              <h2 className="section-title">Selected Engineering Projects</h2>
+              <p className="section-subtitle">
+                Autonomous multi-agent RAG systems, interactive voice assistants, and secure relational platforms.
+              </p>
+            </div>
+
+            <div className="projects-control-bar">
+              <div className="filter-group">
+                {filterOptions.map((filter) => (
+                  <button
+                    key={filter.key}
+                    onClick={() => setActiveFilter(filter.key)}
+                    className={`filter-tab-btn ${activeFilter === filter.key ? 'active' : ''}`}
+                  >
+                    {filter.label}
+                  </button>
+                ))}
+              </div>
+
+              <div className="project-search-wrap">
+                <svg
+                  className="search-icon-svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input
+                  type="text"
+                  placeholder="Filter by keyword (RAG, Gemini, DB...)"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="project-search-input"
+                />
+              </div>
+            </div>
+
+            {filteredProjects.length > 0 ? (
+              <div className="projects-grid">
+                {filteredProjects.map((project) => (
+                  <article key={project.id} className="card-glass project-card">
+                    <div>
+                      <div className="project-top-meta">
+                        <span className="project-category-tag">{project.categoryLabel}</span>
+                        {project.featured && (
+                          <span style={{ fontSize: '0.78rem', color: 'var(--accent-emerald)', fontFamily: 'var(--font-mono)', fontWeight: 600 }}>
+                            ★ Highlighted
+                          </span>
+                        )}
+                      </div>
+
+                      <h3 className="project-title">{project.title}</h3>
+                      <div className="project-tagline">{project.tagline}</div>
+                      <p className="project-desc">{project.description}</p>
+
+                      <ul className="project-highlights-list">
+                        {project.highlights.map((item, idx) => (
+                          <li key={idx}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div>
+                      <div className="project-stack-wrap">
+                        {project.stack.map((tech) => (
+                          <span key={tech} className="project-stack-chip">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="project-card-footer">
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn-secondary btn-sm"
+                        >
+                          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                          </svg>
+                          <span>View Code</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            ) : (
+              <div style={{ textAlign: 'center', padding: '3rem 0', color: 'var(--text-muted)' }}>
+                <p style={{ marginBottom: '1rem', fontSize: '1.1rem' }}>No projects match your search.</p>
+                <button
+                  onClick={() => {
+                    setActiveFilter('all');
+                    setSearchQuery('');
+                  }}
+                  className="btn btn-secondary btn-sm"
+                >
+                  Reset Filters
+                </button>
+              </div>
+            )}
+          </div>
+        </section>
+      );
+    }
+
+    function AiAssistant() {
+      const [messages, setMessages] = useState([
+        {
+          role: 'bot',
+          text: "Hello! I am Liche's interactive neural agent. Feel free to ask about her Agentic RAG systems, 6-month AI engineering at INSA, backend architectures, or job availability!"
+        }
+      ]);
+      const [inputValue, setInputValue] = useState('');
+      const [isTyping, setIsTyping] = useState(false);
+      const transcriptEndRef = useRef(null);
+
+      const scrollToBottom = () => {
+        transcriptEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+      };
+
+      useEffect(() => {
+        scrollToBottom();
+      }, [messages, isTyping]);
+
+      const getAgentAnswer = (query) => {
+        const q = query.toLowerCase();
+        if (q.includes('insa') || q.includes('internship') || q.includes('experience') || q.includes('work')) {
+          return aiKnowledgeBase.insa;
+        }
+        if (q.includes('rag') || q.includes('agent') || q.includes('retrieval') || q.includes('vector') || q.includes('chromadb')) {
+          return aiKnowledgeBase.rag;
+        }
+        if (q.includes('voice') || q.includes('gemini') || q.includes('assistant') || q.includes('websocket')) {
+          return aiKnowledgeBase.assistant;
+        }
+        if (q.includes('backend') || q.includes('database') || q.includes('stack') || q.includes('fastapi') || q.includes('postgres')) {
+          return aiKnowledgeBase.backend;
+        }
+        if (q.includes('jimma') || q.includes('university') || q.includes('education') || q.includes('degree')) {
+          return aiKnowledgeBase.education;
+        }
+        if (q.includes('contact') || q.includes('hire') || q.includes('available') || q.includes('email') || q.includes('telegram')) {
+          return aiKnowledgeBase.availability;
+        }
+        if (q.includes('project') || q.includes('portfolio') || q.includes('ethiopia') || q.includes('code')) {
+          return aiKnowledgeBase.projects;
+        }
+        return aiKnowledgeBase.default;
+      };
+
+      const handleSend = (textToSend) => {
+        const q = (textToSend || inputValue).trim();
+        if (!q) return;
+
+        const newMessages = [...messages, { role: 'user', text: q }];
+        setMessages(newMessages);
+        setInputValue('');
+        setIsTyping(true);
+
+        setTimeout(() => {
+          const response = getAgentAnswer(q);
+          setMessages([...newMessages, { role: 'bot', text: response }]);
+          setIsTyping(false);
+        }, 450);
+      };
+
+      const handleClear = () => {
+        setMessages([
+          {
+            role: 'bot',
+            text: "Transcript reset. Ask me anything regarding Liche's projects, experience, or tech stack!"
+          }
+        ]);
+      };
+
+      return (
+        <section className="section" id="assistant">
+          <div className="container">
+            <div className="section-header">
+              <div className="section-tag">
+                <span>Interactive AI Demo</span>
+              </div>
+              <h2 className="section-title">Query Li's Agent Simulator</h2>
+              <p className="section-subtitle">
+                Experience intent routing logic inspired by <strong>Li's AI Voice Assistant</strong> & <strong>Visit Ethiopia Agentic RAG</strong>.
+              </p>
+            </div>
+
+            <div className="card-glass ai-sim-box">
+              <div className="ai-sim-topbar">
+                <div className="ai-agent-status">
+                  <span className="pulse-indicator"></span>
+                  <span>Neural Agent: Online • Fast Latency</span>
+                </div>
+
+                <button
+                  onClick={handleClear}
+                  className="btn-ghost btn-sm"
+                  style={{ fontSize: '0.8rem', cursor: 'pointer', border: 'none' }}
+                  title="Clear transcript"
+                >
+                  Clear Chat
+                </button>
+              </div>
+
+              <div className="ai-chips-group">
+                {samplePrompts.map((item, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleSend(item.query)}
+                    className="ai-chip-prompt"
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+
+              <div className="chat-transcript-area">
+                {messages.map((msg, idx) => (
+                  <div
+                    key={idx}
+                    className={`chat-bubble-row ${msg.role === 'user' ? 'user-row' : ''}`}
+                  >
+                    <div
+                      className={`chat-avatar-indicator ${
+                        msg.role === 'user' ? 'user-avatar' : 'bot-avatar'
+                      }`}
+                    >
+                      {msg.role === 'user' ? 'YOU' : 'LT'}
+                    </div>
+
+                    <div
+                      className={`chat-bubble-content ${
+                        msg.role === 'user' ? 'user-bubble' : 'bot-bubble'
+                      }`}
+                    >
+                      {msg.text}
+                    </div>
+                  </div>
+                ))}
+
+                {isTyping && (
+                  <div className="chat-bubble-row">
+                    <div className="chat-avatar-indicator bot-avatar">LT</div>
+                    <div className="chat-bubble-content bot-bubble" style={{ color: 'var(--text-muted)' }}>
+                      <span>Synthesizing answer...</span>
+                    </div>
+                  </div>
+                )}
+
+                <div ref={transcriptEndRef} />
+              </div>
+
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleSend();
+                }}
+                className="chat-input-row"
+              >
+                <input
+                  type="text"
+                  placeholder="Ask about Liche's AI architecture, INSA experience, or tech stack..."
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  className="chat-input-field"
+                />
+                <button type="submit" className="btn btn-primary" aria-label="Send Message">
+                  <span>Send</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                  </svg>
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function Contact() {
+      const [copied, setCopied] = useState(false);
+      const [formState, setFormState] = useState({ name: '', email: '', message: '' });
+      const [submitted, setSubmitted] = useState(false);
+
+      const handleCopyEmail = (e) => {
+        e.preventDefault();
+        navigator.clipboard.writeText(personalInfo.email).then(() => {
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2500);
+        });
+      };
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!formState.name || !formState.email || !formState.message) return;
+        setSubmitted(true);
+        setFormState({ name: '', email: '', message: '' });
+        setTimeout(() => setSubmitted(false), 6000);
+      };
+
+      return (
+        <section className="section" id="contact">
+          <div className="container">
+            <div className="section-header">
+              <div className="section-tag">
+                <span>Get In Touch</span>
+              </div>
+              <h2 className="section-title">Let's Connect & Collaborate</h2>
+              <p className="section-subtitle">
+                Open for full-time engineering roles, AI agent consulting, and technical collaboration.
+              </p>
+            </div>
+
+            <div className="contact-layout">
+              <div className="card-glass contact-card">
+                <h3 style={{ fontSize: '1.35rem', fontWeight: 700, marginBottom: '0.75rem', color: 'var(--text-primary)' }}>
+                  Direct Channels
+                </h3>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.94rem', marginBottom: '1.75rem' }}>
+                  Feel free to reach out directly via email, message on Telegram, or connect professionally on LinkedIn.
+                </p>
+
+                <div className="contact-channel-item">
+                  <div className="channel-left">
+                    <div className="channel-icon-pill">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                      </svg>
+                    </div>
+                    <div>
+                      <div className="channel-label">Direct Email</div>
+                      <div className="channel-value">{personalInfo.email}</div>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={handleCopyEmail}
+                    className={`copy-badge-btn ${copied ? 'copied' : ''}`}
+                    aria-label="Copy Email Address"
+                  >
+                    {copied ? 'Copied!' : 'Copy'}
+                  </button>
+                </div>
+
+                <a
+                  href={personalInfo.telegram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="contact-channel-item"
+                >
+                  <div className="channel-left">
+                    <div className="channel-icon-pill" style={{ color: 'var(--accent-cyan)', background: 'rgba(6, 182, 212, 0.1)' }}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.87 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.46c.537-.196 1.006.128.831.94z"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <div className="channel-label">Telegram</div>
+                      <div className="channel-value">{personalInfo.telegramHandle}</div>
+                    </div>
+                  </div>
+
+                  <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Chat →</span>
+                </a>
+
+                <a
+                  href={personalInfo.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="contact-channel-item"
+                >
+                  <div className="channel-left">
+                    <div className="channel-icon-pill">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <div className="channel-label">LinkedIn</div>
+                      <div className="channel-value">in/{personalInfo.linkedinHandle}</div>
+                    </div>
+                  </div>
+
+                  <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>View →</span>
+                </a>
+
+                <a
+                  href={personalInfo.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="contact-channel-item"
+                >
+                  <div className="channel-left">
+                    <div className="channel-icon-pill">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div className="channel-label">GitHub</div>
+                      <div className="channel-value">{personalInfo.githubHandle} (29 Repos)</div>
+                    </div>
+                  </div>
+
+                  <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>View →</span>
+                </a>
+              </div>
+
+              <div className="card-glass contact-card">
+                <h3 style={{ fontSize: '1.35rem', fontWeight: 700, marginBottom: '0.75rem', color: 'var(--text-primary)' }}>
+                  Send a Direct Message
+                </h3>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.94rem', marginBottom: '1.75rem' }}>
+                  Have a role, project, or technical question? Leave a note and I'll get back to you promptly.
+                </p>
+
+                <form onSubmit={handleSubmit}>
+                  <div className="form-group">
+                    <label className="form-label" htmlFor="name">Your Name</label>
+                    <input
+                      type="text"
+                      id="name"
+                      placeholder="e.g. Alex Chen"
+                      value={formState.name}
+                      onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+                      className="form-input"
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label className="form-label" htmlFor="email">Your Email</label>
+                    <input
+                      type="email"
+                      id="email"
+                      placeholder="e.g. alex@company.com"
+                      value={formState.email}
+                      onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                      className="form-input"
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label className="form-label" htmlFor="message">Message</label>
+                    <textarea
+                      id="message"
+                      rows="4"
+                      placeholder="Tell me about your team, project requirements, or opportunity..."
+                      value={formState.message}
+                      onChange={(e) => setFormState({ ...formState, message: e.target.value })}
+                      className="form-textarea"
+                      required
+                    />
+                  </div>
+
+                  <button type="submit" className="btn btn-primary" style={{ width: '100%' }}>
+                    <span>Send Message</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </button>
+
+                  {submitted && (
+                    <div className="form-alert form-alert-success">
+                      ✓ Thank you! Your message has been received. Liche will reach out to you promptly.
+                    </div>
+                  )}
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function Footer() {
+      const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+
+      return (
+        <footer className="footer">
+          <div className="container footer-container">
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.35rem' }}>
+                <span className="monogram-badge" style={{ width: '28px', height: '28px', fontSize: '0.75rem' }}>LT</span>
+                <span style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--text-primary)' }}>{personalInfo.name}</span>
+              </div>
+              <div className="footer-copy">
+                B.Sc. Software Engineering Candidate • Jimma University • Ethiopia
+              </div>
+            </div>
+
+            <div className="footer-links-group">
+              <a href={personalInfo.github} target="_blank" rel="noopener noreferrer" className="footer-link">
+                GitHub
+              </a>
+              <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer" className="footer-link">
+                LinkedIn
+              </a>
+              <a href={personalInfo.telegram} target="_blank" rel="noopener noreferrer" className="footer-link">
+                Telegram
+              </a>
+              <a href={personalInfo.resumePath} target="_blank" rel="noopener noreferrer" download className="footer-link">
+                Resume (PDF)
+              </a>
+              <button
+                onClick={scrollToTop}
+                className="btn-ghost btn-sm"
+                style={{ cursor: 'pointer', border: 'none', color: 'var(--accent-primary)', fontWeight: 600 }}
+              >
+                ↑ Top
+              </button>
+            </div>
+          </div>
+        </footer>
+      );
+    }
+
+    function FloatingChatbot() {
+      const [isOpen, setIsOpen] = useState(false);
+      const [showTooltip, setShowTooltip] = useState(true);
+      const [messages, setMessages] = useState([
+        {
+          role: 'bot',
+          text: "Hi there! I'm Li's Virtual Assistant. Ask me about Liche's AI engineering at INSA, Agentic RAG projects, tech stack, or full-time availability!"
+        }
+      ]);
+      const [inputValue, setInputValue] = useState('');
+      const [isTyping, setIsTyping] = useState(false);
+      const messagesEndRef = useRef(null);
+
+      const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+      };
+
+      useEffect(() => {
+        if (isOpen) {
+          scrollToBottom();
+        }
+      }, [messages, isOpen, isTyping]);
+
+      useEffect(() => {
+        const handleKeyDown = (e) => {
+          if (e.key === 'Escape' && isOpen) {
+            setIsOpen(false);
+          }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+      }, [isOpen]);
+
+      const getAnswer = (q) => {
+        const query = q.toLowerCase();
+        if (query.includes('insa') || query.includes('internship') || query.includes('experience') || query.includes('work')) {
+          return aiKnowledgeBase.insa;
+        }
+        if (query.includes('rag') || query.includes('agent') || query.includes('retrieval') || query.includes('vector') || query.includes('chromadb')) {
+          return aiKnowledgeBase.rag;
+        }
+        if (query.includes('voice') || query.includes('gemini') || query.includes('assistant') || query.includes('websocket')) {
+          return aiKnowledgeBase.assistant;
+        }
+        if (query.includes('backend') || query.includes('database') || query.includes('stack') || query.includes('fastapi') || query.includes('postgres')) {
+          return aiKnowledgeBase.backend;
+        }
+        if (query.includes('jimma') || query.includes('university') || query.includes('education') || query.includes('degree')) {
+          return aiKnowledgeBase.education;
+        }
+        if (query.includes('contact') || query.includes('hire') || query.includes('available') || query.includes('email') || query.includes('telegram')) {
+          return aiKnowledgeBase.availability;
+        }
+        if (query.includes('project') || query.includes('ethiopia') || query.includes('code')) {
+          return aiKnowledgeBase.projects;
+        }
+        return aiKnowledgeBase.default;
+      };
+
+      const handleSendMessage = (textToSend) => {
+        const q = (textToSend || inputValue).trim();
+        if (!q) return;
+
+        const newMsgs = [...messages, { role: 'user', text: q }];
+        setMessages(newMsgs);
+        setInputValue('');
+        setIsTyping(true);
+
+        setTimeout(() => {
+          const reply = getAnswer(q);
+          setMessages([...newMsgs, { role: 'bot', text: reply }]);
+          setIsTyping(false);
+        }, 450);
+      };
+
+      return (
+        <div className="floating-chatbot-container">
+          {isOpen && (
+            <div className="chatbot-window card-glass" role="dialog" aria-label="Li's AI Virtual Assistant">
+              <div className="chatbot-window-header">
+                <div className="chatbot-header-info">
+                  <div className="chatbot-avatar-pill">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" />
+                      <rect x="3" y="8" width="18" height="12" rx="4" />
+                      <circle cx="8" cy="14" r="1.5" fill="currentColor" />
+                      <circle cx="16" cy="14" r="1.5" fill="currentColor" />
+                      <path d="M9 18h6" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="chatbot-header-title">Li's AI Assistant</div>
+                    <div className="chatbot-header-sub">
+                      <span className="pulse-indicator-small"></span>
+                      <span>Online • AI Knowledge Engine</span>
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="chatbot-close-btn"
+                  aria-label="Close assistant window"
+                >
+                  ✕
+                </button>
+              </div>
+
+              <div className="chatbot-chips-bar">
+                {samplePrompts.slice(0, 3).map((prompt, i) => (
+                  <button
+                    key={i}
+                    onClick={() => handleSendMessage(prompt.query)}
+                    className="chatbot-quick-chip"
+                  >
+                    {prompt.label}
+                  </button>
+                ))}
+              </div>
+
+              <div className="chatbot-messages-scroll">
+                {messages.map((m, idx) => (
+                  <div
+                    key={idx}
+                    className={`chatbot-msg-bubble ${m.role === 'user' ? 'user-bubble' : 'bot-bubble'}`}
+                  >
+                    {m.text}
+                  </div>
+                ))}
+
+                {isTyping && (
+                  <div className="chatbot-msg-bubble bot-bubble typing-dots">
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                  </div>
+                )}
+                <div ref={messagesEndRef} />
+              </div>
+
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleSendMessage();
+                }}
+                className="chatbot-input-form"
+              >
+                <input
+                  type="text"
+                  placeholder="Ask me anything..."
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  className="chatbot-text-input"
+                />
+                <button type="submit" className="chatbot-send-btn" aria-label="Send">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+                  </svg>
+                </button>
+              </form>
+            </div>
+          )}
+
+          <div className="chatbot-fab-cluster">
+            {!isOpen && showTooltip && (
+              <div
+                className="chatbot-callout-pill"
+                onClick={() => {
+                  setIsOpen(true);
+                  setShowTooltip(false);
+                }}
+              >
+                <span className="pulse-indicator-small"></span>
+                <span>Chat with Li's Assistant</span>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowTooltip(false);
+                  }}
+                  className="callout-dismiss-btn"
+                  title="Dismiss"
+                >
+                  ✕
+                </button>
+              </div>
+            )}
+
+            <button
+              onClick={() => {
+                setIsOpen(!isOpen);
+                if (!isOpen) setShowTooltip(false);
+              }}
+              className={`chatbot-fab-btn ${isOpen ? 'active-open' : ''}`}
+              aria-label={isOpen ? "Close AI Assistant" : "Open AI Assistant"}
+              title={isOpen ? "Close AI Assistant" : "Chat with Li's Assistant"}
+            >
+              {isOpen ? (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              ) : (
+                <>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <rect x="4" y="6" width="16" height="12" rx="4" />
+                    <line x1="12" y1="2" x2="12" y2="6" />
+                    <circle cx="12" cy="2" r="1" fill="currentColor" />
+                    <circle cx="9" cy="12" r="1.5" fill="currentColor" />
+                    <circle cx="15" cy="12" r="1.5" fill="currentColor" />
+                    <path d="M9 15c.67.67 1.33 1 3 1s2.33-.33 3-1" />
+                    <path d="M2 12h2M20 12h2" />
+                  </svg>
+                  <span className="fab-online-dot"></span>
+                </>
+              )}
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    // --- Top-Level Root Component ---
+    function App() {
+      const [theme, setTheme] = useState(() => {
+        return localStorage.getItem('liche_portfolio_theme') || 'dark';
+      });
+
+      useEffect(() => {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('liche_portfolio_theme', theme);
+      }, [theme]);
+
+      const toggleTheme = () => {
+        setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+      };
+
+      return (
+        <div className="app-root">
+          <div className="bg-subtle-grid" />
+          <Navbar theme={theme} toggleTheme={toggleTheme} />
+          <main>
+            <Hero />
+            <About />
+            <Experience />
+            <Skills />
+            <Projects />
+            <AiAssistant />
+            <Contact />
+          </main>
+          <Footer />
+          <FloatingChatbot />
+        </div>
+      );
+    }
+
+    // Mount Application
+    const rootElement = document.getElementById('root');
+    ReactDOM.createRoot(rootElement).render(<App />);
+  </script>
+</body>
+</html>
